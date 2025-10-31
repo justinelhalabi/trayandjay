@@ -206,7 +206,7 @@
 
           <!-- Looking Ahead as final node on the line -->
           <article class="t-item center endcap" data-reveal>
-            <div class="t-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+            <div class="t-icon star"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
             <div class="t-card focus">
               <h3>Looking Ahead</h3>
               <p class="lead center">Our story doesn’t stop here — this is just the intermission before Chapter 2.</p>
@@ -218,41 +218,11 @@
       </div>
     </section>
 
-    <!-- GLOBE -->
+    <!-- REAL GLOBE -->
     <section class="section" id="globe">
       <div class="wrap">
         <h2 class="center">Where We’ve Been</h2>
-        <div class="globe" data-reveal aria-label="Spinning globe with pins">
-          <!-- Map strip (SVG) that slides to simulate rotation -->
-          <svg class="globe-strip" viewBox="0 0 1600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <defs>
-              <linearGradient id="ocean" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#E8F7FF"/>
-                <stop offset="100%" stop-color="#F4E8FF"/>
-              </linearGradient>
-            </defs>
-            <rect x="0" y="0" width="1600" height="400" fill="url(#ocean)"/>
-            <!-- Repeated simple continents for a parallax look -->
-            <g fill="#D6E3F2" opacity="0.95">
-              <path d="M80,160 C160,120 260,130 320,160 C350,175 370,210 340,230 C300,260 200,250 140,220 C110,205 90,180 80,160 Z"/>
-              <path d="M360,155 C420,130 520,135 600,165 C660,190 660,230 600,250 C540,270 420,260 370,230 C340,210 330,175 360,155 Z"/>
-              <path d="M600,230 C640,220 710,230 740,255 C750,265 745,285 710,295 C670,305 620,290 600,270 Z"/>
-            </g>
-            <g fill="#D6E3F2" transform="translate(800,0)" opacity="0.95">
-              <path d="M80,160 C160,120 260,130 320,160 C350,175 370,210 340,230 C300,260 200,250 140,220 C110,205 90,180 80,160 Z"/>
-              <path d="M360,155 C420,130 520,135 600,165 C660,190 660,230 600,250 C540,270 420,260 370,230 C340,210 330,175 360,155 Z"/>
-              <path d="M600,230 C640,220 710,230 740,255 C750,265 745,285 710,295 C670,305 620,290 600,270 Z"/>
-            </g>
-          </svg>
-          <!-- Pins layer moves with same animation timing for illusion -->
-          <div class="pins">
-            <div class="pin p-leb" aria-label="Lebanon"></div>
-            <div class="pin p-paris" aria-label="Paris"></div>
-            <div class="pin p-stras" aria-label="Strasbourg"></div>
-            <div class="pin p-dubai" aria-label="Dubai"></div>
-            <div class="pin p-abudhabi" aria-label="Abu Dhabi"></div>
-          </div>
-        </div>
+        <div id="globeCanvas" class="globe3d" aria-label="Spinning globe with pins"></div>
         <p class="center muted">A simple spinning view — pins mark our stops.</p>
       </div>
     </section>
@@ -263,7 +233,6 @@
         <h2 class="center">Gallery</h2>
         <p class="center muted">We’ll keep dropping photos here. Tap any picture to view it larger.</p>
         <div class="gallery">
-          <!-- Placeholders you can swap later -->
           <figure class="g-card" data-reveal>
             <a href="photos/first-date-a.jpg" data-lightbox="g"><img src="photos/first-date-a.jpg" alt="First Date"></a>
           </figure>
@@ -296,6 +265,8 @@
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <!-- Three.js for the globe -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

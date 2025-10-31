@@ -5,14 +5,11 @@
   --muted:#6b7280;
   --card:#ffffff;
   --soft:#f7f8fc;
-  --ring: rgba(130, 71, 255, .25);
 
-  /* Fun palette */
   --c1:#FF7A7A;   /* coral */
   --c2:#FFCC70;   /* mango */
   --c3:#7BDFF2;   /* sky */
   --c4:#B28DFF;   /* violet */
-  --c5:#94F7C5;   /* mint */
 
   --radius:18px;
   --shadow:0 12px 28px rgba(22,25,45,.08);
@@ -95,9 +92,10 @@ body{
 }
 .t-item{ display: grid; grid-template-columns: 1fr; gap: 12px; margin: 28px 0; position: relative; }
 .t-item .t-icon{
-  position: absolute; left: calc(50% - 25px); top: -8px; width: 50px; height: 50px; border-radius: 50%;
-  background: #fff; border: 3px solid #fff; box-shadow: var(--shadow); display: grid; place-items: center;
+  position: absolute; left: calc(50% - 25px); top: -26px; width: 50px; height: 50px; border-radius: 50%;
+  background: #fff; border: 3px solid #fff; box-shadow: var(--shadow); display: grid; place-items: center; z-index: 2;
 }
+.t-item.endcap .t-card{ padding-top: 26px; } /* prevent star overlap */
 .t-item .t-icon i{ font-size: 20px; background: linear-gradient(135deg, var(--c2), var(--c4)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 .t-card{
@@ -106,6 +104,7 @@ body{
 .t-card time{ display: inline-block; font-weight: 800; color: var(--c4); }
 .t-card h3{ margin: 4px 0 6px; font-size: 20px; }
 .t-card p{ margin: 0 0 14px; color: var(--ink); }
+.t-card.focus{ border-width:2px; border-color: rgba(178,141,255,.35); }
 
 /* Postcard photo pair (centered) */
 .postcards.two{
@@ -129,7 +128,7 @@ body{
 }
 .memory .memory-inner{ max-width: 720px; margin: 0 auto; display:flex; flex-direction:column; gap:10px; }
 .bubble{
-  max-width: 92%; padding: 10px 14px; border-radius: 16px; line-height:1.5; box-shadow: var(--shadow);
+  max-width: 96%; padding: 10px 14px; border-radius: 16px; line-height:1.5; box-shadow: var(--shadow);
 }
 .bubble.j{ align-self: flex-start; background: #FFF6F6; border: 1px solid rgba(255,122,122,.35); }
 .bubble.t{ align-self: flex-end; background: #F5FFFA; border: 1px solid rgba(148,247,197,.5); }
@@ -154,48 +153,16 @@ body{
   }
   .t-item.center .t-card{ grid-column: 1 / -1; }
 }
-.t-item.center .t-card{ text-align:center; }
-.t-item.endcap .t-icon{ background:linear-gradient(180deg, #fff, #fff); }
 
-.t-card.focus{ border-width:2px; border-color: rgba(178,141,255,.35); }
-
-/* ---------- Spinning Globe ---------- */
-.globe{
-  --size: 720px;
-  max-width: var(--size);
-  width: 100%;
-  aspect-ratio: 2/1; /* widescreen sphere container */
-  margin: 16px auto 0;
-  background: radial-gradient(120% 120% at 50% 40%, rgba(255,255,255,.85), rgba(244,232,255,.8));
-  border-radius: 24px; box-shadow: var(--shadow); border:1px solid rgba(0,0,0,.06);
+/* ---------- 3D Globe (Three.js) ---------- */
+.globe3d{
+  width: 100%; max-width: 760px; aspect-ratio: 1/1; margin: 16px auto 0;
+  border-radius: 20px; background: radial-gradient(120% 120% at 50% 40%, rgba(255,255,255,.85), rgba(244,232,255,.8));
+  box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06);
   position: relative; overflow: hidden;
 }
-.globe::after{ /* soft vignette */
-  content:""; position:absolute; inset:0; background: radial-gradient(90% 60% at 50% 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,.05));
-  pointer-events:none;
-}
-.globe-strip{
-  position:absolute; inset:0;
-  animation: spin 22s linear infinite;
-}
-.pins{
-  position:absolute; inset:0; pointer-events:none; /* follow same illusion via transform */
-  animation: spin 22s linear infinite;
-}
-.pin{
-  position:absolute; width:10px; height:10px; border-radius:50%; background:#FF7A7A; box-shadow: 0 0 0 6px rgba(255,122,122,.18);
-}
-/* approximate pin positions (percentages over the strip) */
-.p-leb{ left:60%; top:45%; }
-.p-paris{ left:53.5%; top:37%; background:#94F7C5; box-shadow:0 0 0 6px rgba(148,247,197,.18); }
-.p-stras{ left:55.5%; top:37%; background:#B28DFF; box-shadow:0 0 0 6px rgba(178,141,255,.18); }
-.p-dubai{ left:67.5%; top:52%; background:#7BDFF2; box-shadow:0 0 0 6px rgba(123,223,242,.18); }
-.p-abudhabi{ left:66.8%; top:52%; background:#FFCC70; box-shadow:0 0 0 6px rgba(255,204,112,.18); }
-
-@keyframes spin{
-  from{ transform: translateX(0); }
-  to{   transform: translateX(-50%); }
-}
+.globe3d canvas{ display:block; width:100% !important; height:100% !important; }
+.globe3d .hint{ position:absolute; bottom:8px; right:10px; color:var(--muted); font-size:12px; }
 
 /* ---------- Gallery ---------- */
 .gallery{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); margin-top: 20px; }
@@ -211,7 +178,6 @@ body{
 /* ---------- Reveal Animations ---------- */
 [data-reveal]{ opacity: 0; transform: translateY(14px); }
 .revealed{ opacity: 1 !important; transform: translateY(0) !important; transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
-.revealed[data-reveal-delay="50"]{ transition-delay: 50ms; }
 .revealed[data-reveal-delay="60"]{ transition-delay: 60ms; }
 .revealed[data-reveal-delay="80"]{ transition-delay: 80ms; }
 .revealed[data-reveal-delay="100"]{ transition-delay: 100ms; }
@@ -221,8 +187,7 @@ body{
 @media (max-width: 520px){
   .polaroid{ width: calc(50% - 8px); }
   .polaroid img{ height: 110px; }
-  .tilt-l, .tilt-r{ transform: rotate(.5deg); } /* gentler tilt on phones */
+  .tilt-l, .tilt-r{ transform: rotate(.5deg); }
   .site-header .nav a{ margin-left: 10px; }
-  .bubble{ max-width: 96%; }
-  .globe{ border-radius: 18px; }
+  .bubble{ max-width: 98%; }
 }
