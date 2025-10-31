@@ -1,104 +1,110 @@
-// Year
-document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
-
-// Reveal on scroll
-const els = document.querySelectorAll('[data-reveal]');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('revealed');
-      io.unobserve(e.target);
-    }
-  })
-},{rootMargin:'0px 0px -12% 0px', threshold:0.12});
-els.forEach(el=>io.observe(el));
-
-// Smooth anchor scrolling
-document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    const id = a.getAttribute('href').slice(1);
-    const target = document.getElementById(id);
-    if(target){
-      e.preventDefault();
-      target.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  });
-});
-
-// Lightbox options (if library present)
-if (window.lightbox) {
-  lightbox.option({ fadeDuration:150, imageFadeDuration:150, resizeDuration:150, wrapAround:true });
-}
-
-// Animated timeline fill
+// Basic Three.js spinning globe + pins + labels (no textures)
 (function(){
-  const tl = document.getElementById('timelineLine');
-  const fill = document.getElementById('timelineFill');
-  function update(){
-    if(!tl || !fill) return;
-    const rect = tl.getBoundingClientRect();
-    const vH = window.innerHeight || document.documentElement.clientHeight;
-    const start = rect.top;
-    const progress = Math.min(1, Math.max(0, (vH - start) / (rect.height + vH*0.4)));
-    const h = Math.max(0, progress * rect.height);
-    fill.style.height = h + 'px';
+  const mount = document.getElementById('globe3d');
+  if(!mount || !window.THREE) return;
+
+  const scene = new THREE.Scene();
+  const width = mount.clientWidth;
+  const height = mount.clientHeight;
+
+  const camera = new THREE.PerspectiveCamera(35, width/height, 0.1, 100);
+  camera.position.set(0, 0, 5.2);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  mount.appendChild(renderer.domElement);
+
+  const R = 2;
+  const globe = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 96),
+    new THREE.MeshPhongMaterial({ color: 0x9ecbff, specular: 0xffffff, shininess: 12 })
+  );
+  scene.add(globe);
+
+  const glow = new THREE.Mesh(new THREE.SphereGeometry(R*1.015, 64, 64),
+    new THREE.MeshBasicMaterial({ color: 0xb9a8ff, transparent: true, opacity: 0.15 })
+  );
+  scene.add(glow);
+
+  const dir = new THREE.DirectionalLight(0xffffff, 1.1);
+  dir.position.set(4, 2, 3); scene.add(dir);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+  function latLonToVec3(lat, lon, radius=R){
+    const phi = (90 - lat) * Math.PI/180;
+    const theta = (lon + 180) * Math.PI/180;
+    return new THREE.Vector3(
+      -radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.cos(phi),
+      radius * Math.sin(phi) * Math.sin(theta)
+    );
   }
-  update();
-  window.addEventListener('scroll', update, {passive:true});
-  window.addEventListener('resize', update);
-})();
 
-// --------- 3D Globe via Globe.gl (with Leaflet fallback) ---------
-(function(){
-  const container = document.getElementById('globeContainer');
-  const fallbackEl = document.getElementById('mapFallback');
-  const hasWebGL = (()=>{
-    try{
-      const canvas = document.createElement('canvas');
-      return !!(window.WebGLRenderingContext &&
-        (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-    }catch(e){ return false; }
-  })();
-
-  const locations = [
-    { name: 'Beirut',     lat: 33.8938, lon: 35.5018, color: '#ff7a7a' },
-    { name: 'Paris',      lat: 48.8566, lon: 2.3522,  color: '#94f7c5' },
-    { name: 'Strasbourg', lat: 48.5734, lon: 7.7521,  color: '#b28dff' },
-    { name: 'Dubai',      lat: 25.2048, lon: 55.2708, color: '#7bdff2' },
-    { name: 'Abu Dhabi',  lat: 24.4539, lon: 54.3773, color: '#ffcc70' }
-  ];
-
-  if (hasWebGL && window.Globe){
-    // 3D globe
-    const globeEl = Globe()
-      (container)
-      .pointAltitude(0.02)
-      .pointRadius(0.45)          // size multiplier
-      .pointColor(d => d.color)
-      .pointsData(locations)
-      .backgroundColor('rgba(0,0,0,0)')
-      .globeImageUrl('https://unpkg.com/three-globe@2.27.2/example/img/earth-dark.jpg')  // lightweight texture
-      .bumpImageUrl('https://unpkg.com/three-globe@2.27.2/example/img/earth-topology.png');
-
-    // autorotate & pause on hover
-    const controls = globeEl.controls();
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.6;
-    container.addEventListener('mouseenter', ()=> controls.autoRotate = false);
-    container.addEventListener('mouseleave', ()=> controls.autoRotate = true);
-  } else {
-    // Fallback 2D Leaflet
-    fallbackEl.style.display = 'block';
-    const map = L.map('mapFallback', { zoomControl: false, attributionControl: true })
-      .setView([30, 20], 2);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 5,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    locations.forEach(p => {
-      L.circleMarker([p.lat, p.lon], { radius: 6, color: p.color, fillColor: p.color, fillOpacity: 0.8 }).addTo(map).bindPopup(p.name);
-    });
+  function addGraticule(step = 15){
+    const m = new THREE.LineBasicMaterial({ color: 0x7eaee6, opacity: 0.45, transparent: true });
+    for(let lon=-180; lon<=180; lon+=step){
+      const points = [];
+      for(let lat=-89; lat<=89; lat+=2){ points.push(latLonToVec3(lat, lon, R+0.001)); }
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      scene.add(new THREE.Line(geo, m));
+    }
+    for(let lat=-75; lat<=75; lat+=step){
+      const points = [];
+      for(let lon=-180; lon<=180; lon+=2){ points.push(latLonToVec3(lat, lon, R+0.001)); }
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      scene.add(new THREE.Line(geo, m));
+    }
   }
+
+  function makeTextSprite(msg, color='#111827'){
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const fontSize = 28, padding = 24;
+    ctx.font = `600 ${fontSize}px Poppins, system-ui`;
+    const w = ctx.measureText(msg).width;
+    canvas.width = w + padding*2; canvas.height = fontSize + padding*1.6;
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    roundRect(ctx, 0, 0, canvas.width, canvas.height, 12); ctx.fill();
+    ctx.fillStyle = color; ctx.textBaseline = 'middle';
+    ctx.font = `600 ${fontSize}px Poppins, system-ui`;
+    ctx.fillText(msg, padding, canvas.height/2);
+    const tex = new THREE.CanvasTexture(canvas); tex.anisotropy = 8;
+    const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+    const scale = 0.6; spr.scale.set(canvas.width/200*scale, canvas.height/200*scale, 1);
+    return spr;
+  }
+  function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+
+  function addPin(lat, lon, color, label){
+    const pos = latLonToVec3(lat, lon, R+0.02);
+    const pin = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.22, 12),
+      new THREE.MeshStandardMaterial({ color }));
+    pin.position.copy(pos); pin.lookAt(new THREE.Vector3(0,0,0)); pin.rotateX(Math.PI/2); scene.add(pin);
+    const text = makeTextSprite(label);
+    const labelPos = latLonToVec3(lat+4, lon, R+0.32);
+    text.position.copy(labelPos); scene.add(text);
+  }
+
+  addGraticule(15);
+  addPin(33.8938, 35.5018, 0xff7a7a, 'Beirut');
+  addPin(48.8566, 2.3522, 0x94f7c5, 'Paris');
+  addPin(48.5734, 7.7521, 0xb28dff, 'Strasbourg');
+  addPin(25.2048, 55.2708, 0x7bdff2, 'Dubai');
+  addPin(24.4539, 54.3773, 0xffcc70, 'Abu Dhabi');
+
+  function onResize(){ const w = mount.clientWidth, h = mount.clientHeight; renderer.setSize(w,h); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+  window.addEventListener('resize', onResize);
+
+  let paused = false;
+  mount.addEventListener('mouseenter', ()=> paused = true);
+  mount.addEventListener('mouseleave', ()=> paused = false);
+
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!paused){ globe.rotation.y += 0.002; glow.rotation.y += 0.002;
+      scene.traverse(o=>{ if(o.type==='Sprite') o.lookAt(camera.position); });
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
 })();
