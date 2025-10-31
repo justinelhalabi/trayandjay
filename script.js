@@ -34,3 +34,47 @@ if (window.lightbox) {
     wrapAround: true
   });
 }
+
+// Animated connecting line fill
+(function(){
+  const tl = document.getElementById('timelineLine');
+  const fill = document.getElementById('timelineFill');
+  function update(){
+    if(!tl || !fill) return;
+    const rect = tl.getBoundingClientRect();
+    const vH = window.innerHeight || document.documentElement.clientHeight;
+    const start = rect.top;
+    const progress = Math.min(1, Math.max(0, (vH - start) / (rect.height + vH*0.4)));
+    const h = Math.max(0, progress * rect.height);
+    fill.style.height = h + 'px';
+  }
+  update();
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+})();
+
+// Simple map tooltips
+(function(){
+  const tip = document.getElementById('mapTip');
+  const mapWrap = document.querySelector('.map-wrap');
+  if(!tip || !mapWrap) return;
+  mapWrap.querySelectorAll('.pin').forEach(pin=>{
+    pin.addEventListener('mouseenter', ()=>{
+      tip.textContent = pin.getAttribute('data-name') || '';
+      tip.style.opacity = 1;
+    });
+    pin.addEventListener('mouseleave', ()=>{
+      tip.style.opacity = 0;
+    });
+    pin.addEventListener('mousemove', (e)=>{
+      const r = mapWrap.getBoundingClientRect();
+      tip.style.left = (e.clientX - r.left) + 'px';
+      tip.style.top  = (e.clientY - r.top) + 'px';
+    });
+    pin.addEventListener('click', ()=>{
+      tip.textContent = pin.getAttribute('data-name') || '';
+      tip.style.opacity = 1;
+      setTimeout(()=> tip.style.opacity = 0, 1200);
+    });
+  });
+})();

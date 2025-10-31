@@ -52,7 +52,6 @@ body{
 .hero h1 span{ color: var(--c4); }
 .hero p{ color: var(--muted); margin: 0 0 14px; font-size: clamp(16px,2.3vw,20px); }
 .hero .tagline{ color:#374151; font-weight:700; }
-.hero .micro{ font-size: 14px; }
 .cta{ display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn{ display:inline-block; padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 800; border: 2px solid transparent; }
 .btn.primary{ background: linear-gradient(135deg, var(--c1), var(--c2)); color:#381b18; box-shadow: var(--shadow); }
@@ -84,12 +83,19 @@ body{
 /* ---------- Timeline ---------- */
 .timeline{ position: relative; list-style: none; padding-left: 0; margin: 26px 0 0; }
 .timeline::before{
-  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: linear-gradient(var(--c3), var(--c4));
+  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: rgba(0,0,0,.06);
   transform: translateX(-50%);
 }
-.t-item{ display: grid; grid-template-columns: 1fr; gap: 12px; margin: 22px 0; position: relative; }
+.timeline-fill{
+  position: absolute; left: 50%; top: 0; width: 3px; height: 0;
+  transform: translateX(-50%);
+  background: linear-gradient(var(--c3), var(--c4));
+  box-shadow: 0 0 12px rgba(178,141,255,.45);
+  border-radius: 6px;
+}
+.t-item{ display: grid; grid-template-columns: 1fr; gap: 12px; margin: 28px 0; position: relative; }
 .t-item .t-icon{
-  position: absolute; left: calc(50% - 25px); top: -4px; width: 50px; height: 50px; border-radius: 50%;
+  position: absolute; left: calc(50% - 25px); top: -8px; width: 50px; height: 50px; border-radius: 50%;
   background: #fff; border: 3px solid #fff; box-shadow: var(--shadow); display: grid; place-items: center;
 }
 .t-item .t-icon i{ font-size: 20px; background: linear-gradient(135deg, var(--c2), var(--c4)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -101,19 +107,30 @@ body{
 .t-card h3{ margin: 4px 0 6px; font-size: 20px; }
 .t-card p{ margin: 0 0 14px; color: var(--ink); }
 
-/* Postcard photo trio */
-.postcards{ display:flex; gap:14px; flex-wrap: wrap; }
+/* Postcard photo pair (centered) */
+.postcards.two{
+  display:flex; justify-content:center; gap:16px; flex-wrap: wrap;
+}
 .polaroid{
   background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 12px;
-  padding: 8px 8px 10px; width: 160px; box-shadow: var(--shadow); position: relative;
+  padding: 8px 8px 10px; width: 180px; box-shadow: var(--shadow); position: relative;
   transition: transform .2s ease, box-shadow .2s ease;
 }
-.polaroid img{ display:block; width:100%; height:120px; object-fit: cover; border-radius: 8px; }
+.polaroid img{ display:block; width:100%; height:130px; object-fit: cover; border-radius: 8px; }
 .polaroid span{ position:absolute; left:10px; bottom:6px; font-size: 12px; color:#6b7280; font-weight:700; }
 .polaroid:hover{ transform: translateY(-3px) rotate(-1deg); }
-.tilt-l{ transform: rotate(-4deg); }
-.tilt-m{ transform: rotate(1deg); }
-.tilt-r{ transform: rotate(3deg); }
+.tilt-l{ transform: rotate(-3.5deg); }
+.tilt-r{ transform: rotate(2.5deg); }
+
+/* Memory cards (chat bubbles) */
+.memory{ position: relative; margin: 8px 0 22px; }
+.memory .memory-inner{ max-width: 720px; margin: 0 auto; display:flex; flex-direction:column; gap:10px; }
+.bubble{
+  max-width: 85%; padding: 10px 14px; border-radius: 16px; line-height:1.5; box-shadow: var(--shadow);
+}
+.bubble.j{ align-self: flex-start; background: #FFF6F6; border: 1px solid rgba(255,122,122,.35); }
+.bubble.t{ align-self: flex-end; background: #F5FFFA; border: 1px solid rgba(148,247,197,.5); }
+.pov{ text-align:center; color:var(--muted); font-size: 14px; }
 
 /* Alternate layout on wide screens */
 @media (min-width: 900px){
@@ -128,11 +145,25 @@ body{
   }
 }
 
+/* ---------- Map ---------- */
+.map-wrap{ position: relative; margin-top: 18px; }
+.world{ width: 100%; height: auto; display:block; border-radius: 16px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); }
+.pin{ cursor: pointer; transition: transform .2s ease; }
+.pin:hover{ transform: scale(1.08); }
+.tooltip{
+  position: absolute; padding: 8px 10px; background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 10px;
+  box-shadow: var(--shadow); font-weight:700; color: var(--ink); pointer-events: none; opacity:0; transform: translate(-50%,-120%);
+  transition: opacity .15s ease;
+}
+
 /* ---------- Gallery ---------- */
 .gallery{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); margin-top: 20px; }
 .g-card{ background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
 .g-card img{ display:block; width:100%; height: 200px; object-fit: cover; }
 .g-card figcaption{ padding: 10px 12px; color: var(--muted); font-weight: 700; }
+
+/* ---------- Ahead ---------- */
+.section.ahead{ background: linear-gradient(180deg, rgba(255,204,112,.18), rgba(178,141,255,.18)); }
 
 /* ---------- Footer ---------- */
 .site-footer{ border-top: 1px solid rgba(0,0,0,.06); background: #fff; }
@@ -153,6 +184,7 @@ body{
 @media (max-width: 520px){
   .polaroid{ width: calc(50% - 8px); }
   .polaroid img{ height: 110px; }
-  .tilt-l, .tilt-m, .tilt-r{ transform: rotate(0.5deg); } /* gentler tilt on phones */
+  .tilt-l, .tilt-r{ transform: rotate(.5deg); } /* gentler tilt on phones */
   .site-header .nav a{ margin-left: 10px; }
+  .bubble{ max-width: 92%; }
 }

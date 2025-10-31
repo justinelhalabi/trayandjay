@@ -27,6 +27,8 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#timeline">Timeline</a>
+        <a href="#map">Map</a>
+        <a href="#ahead">Ahead</a>
         <a href="#gallery">Gallery</a>
       </nav>
     </div>
@@ -56,17 +58,16 @@
         <div class="card" data-reveal>
           <h2>About Us</h2>
           <p>
-            We kicked off this little adventure on <strong>July 8, 2023</strong> — a date, a spark,
-            and a lot of voice notes. When the one‑year mark rolled around, we decided to turn this
-            into our live gallery: a colorful scrapbook that keeps growing and will play at our wedding
-            as the finale of <em>Chapter&nbsp;1</em>.
+            We kicked off this little adventure on <strong>July 8, 2023</strong> — a date, a spark, and a lot of voice notes.
+            When the one-year mark rolled around, we turned this site into our live gallery: a colorful scrapbook that
+            keeps growing and will play at our wedding as the finale of <em>Chapter&nbsp;1</em>.
           </p>
           <p class="muted">Stick around — Chapter&nbsp;2 teasers drop later. No spoilers.</p>
         </div>
         <div class="card note" data-reveal data-reveal-delay="80">
           <h3>A quick note</h3>
           <p>
-            This website was first made for our <strong>1‑year anniversary</strong> on
+            This website was first made for our <strong>1-year anniversary</strong> on
             <strong>July&nbsp;8, 2024</strong>. Since then, we’ve been adding new bits as life happens.
           </p>
         </div>
@@ -77,103 +78,225 @@
     <section class="section soft" id="timeline">
       <div class="wrap">
         <h2 class="center">Timeline</h2>
-        <ol class="timeline">
+        <div class="timeline" id="timelineLine">
+          <div class="timeline-fill" id="timelineFill"></div>
 
           <!-- First Date -->
-          <li class="t-item left" data-reveal>
+          <article class="t-item left" data-reveal>
             <div class="t-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>July 8, 2023</time>
               <h3>First Date — Batroun</h3>
               <p>Lunch at Mandaloun, old-town walk, 38°C, two shy people pretending not to melt. We laughed anyway — and that was the spark.</p>
-              <div class="postcards">
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/first-date-a.jpg" data-lightbox="t1"><img src="photos/first-date-a.jpg" alt="First date A"><span>Batroun</span></a>
-                <a class="polaroid tilt-m" href="photos/first-date-b.jpg" data-lightbox="t1"><img src="photos/first-date-b.jpg" alt="First date B"><span>Mandaloun</span></a>
-                <a class="polaroid tilt-r" href="photos/first-date-c.jpg" data-lightbox="t1"><img src="photos/first-date-c.jpg" alt="First date C"><span>Old City</span></a>
+                <a class="polaroid tilt-r" href="photos/first-date-b.jpg" data-lightbox="t1"><img src="photos/first-date-b.jpg" alt="First date B"><span>Mandaloun</span></a>
               </div>
             </div>
-          </li>
+          </article>
+
+          <!-- Memory Card First Date -->
+          <aside class="memory left" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble j">
+                <strong>Justin:</strong> Mshawbe Tracy?
+              </div>
+              <div class="bubble t">
+                <strong>Tracy:</strong> La2 la2 meshe lhall.
+              </div>
+              <div class="pov">POV: L7ara kenit 40 w akalit shab2it shames — Tracy.</div>
+            </div>
+          </aside>
 
           <!-- Paris -->
-          <li class="t-item right" data-reveal data-reveal-delay="60">
+          <article class="t-item right" data-reveal data-reveal-delay="60">
             <div class="t-icon"><i class="fa-solid fa-plane-departure" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>November 18, 2023</time>
               <h3>First Trip — Paris</h3>
-              <p>Movie‑set streets, shameless pastry runs, and the Eiffel sparkling like it had our names on it.</p>
-              <div class="postcards">
+              <p>Movie-set streets, shameless pastry runs, and the Eiffel sparkling like it had our names on it.</p>
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/paris-a.jpg" data-lightbox="t2"><img src="photos/paris-a.jpg" alt="Paris A"><span>Seine</span></a>
-                <a class="polaroid tilt-m" href="photos/paris-b.jpg" data-lightbox="t2"><img src="photos/paris-b.jpg" alt="Paris B"><span>Trocadéro</span></a>
-                <a class="polaroid tilt-r" href="photos/paris-c.jpg" data-lightbox="t2"><img src="photos/paris-c.jpg" alt="Paris C"><span>Montmartre</span></a>
+                <a class="polaroid tilt-r" href="photos/paris-b.jpg" data-lightbox="t2"><img src="photos/paris-b.jpg" alt="Paris B"><span>Trocadéro</span></a>
               </div>
             </div>
-          </li>
+          </article>
+
+          <!-- Memory Card Paris -->
+          <aside class="memory right" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble j">
+                <strong>Justin:</strong> Tracy sa23a blesse 3layke.
+              </div>
+              <div class="bubble t">
+                <strong>Tracy:</strong> La2 la2 meshe lhall.
+              </div>
+              <div class="pov">POV: L7ara kenit -40 w sakhanit — Tracy.</div>
+            </div>
+          </aside>
 
           <!-- Disneyland -->
-          <li class="t-item left" data-reveal data-reveal-delay="80">
+          <article class="t-item left" data-reveal data-reveal-delay="80">
             <div class="t-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>November 21, 2023</time>
               <h3>Disneyland</h3>
               <p>Full “kids again” mode: rides, photos, and that grin you just can’t fake.</p>
-              <div class="postcards">
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/disney-a.jpg" data-lightbox="t3"><img src="photos/disney-a.jpg" alt="Disney A"><span>Main Street</span></a>
-                <a class="polaroid tilt-m" href="photos/disney-b.jpg" data-lightbox="t3"><img src="photos/disney-b.jpg" alt="Disney B"><span>Castle</span></a>
-                <a class="polaroid tilt-r" href="photos/disney-c.jpg" data-lightbox="t3"><img src="photos/disney-c.jpg" alt="Disney C"><span>Fireworks</span></a>
+                <a class="polaroid tilt-r" href="photos/disney-b.jpg" data-lightbox="t3"><img src="photos/disney-b.jpg" alt="Disney B"><span>Castle</span></a>
               </div>
             </div>
-          </li>
+          </article>
+
+          <!-- Memory Card Disneyland -->
+          <aside class="memory left" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble j">
+                <strong>Justin:</strong> ntebhe ma tdoukhe tracy.
+              </div>
+              <div class="bubble t">
+                <strong>Tracy:</strong> La2 la2 meshe lhall.
+              </div>
+              <div class="pov">POV: Baramna 7000 barme bel ride w stafraghit — Tracy.</div>
+            </div>
+          </aside>
 
           <!-- Strasbourg -->
-          <li class="t-item right" data-reveal data-reveal-delay="100">
+          <article class="t-item right" data-reveal data-reveal-delay="100">
             <div class="t-icon"><i class="fa-solid fa-archway" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>November 23, 2023</time>
               <h3>Strasbourg</h3>
               <p>Twinkle lights, warm drinks, frozen fingers. Our own winter movie — 10/10 would shiver again.</p>
-              <div class="postcards">
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/stras-a.jpg" data-lightbox="t4"><img src="photos/stras-a.jpg" alt="Strasbourg A"><span>Market</span></a>
-                <a class="polaroid tilt-m" href="photos/stras-b.jpg" data-lightbox="t4"><img src="photos/stras-b.jpg" alt="Strasbourg B"><span>Cathedral</span></a>
-                <a class="polaroid tilt-r" href="photos/stras-c.jpg" data-lightbox="t4"><img src="photos/stras-c.jpg" alt="Strasbourg C"><span>Lights</span></a>
+                <a class="polaroid tilt-r" href="photos/stras-b.jpg" data-lightbox="t4"><img src="photos/stras-b.jpg" alt="Strasbourg B"><span>Cathedral</span></a>
               </div>
             </div>
-          </li>
+          </article>
+
+          <!-- Memory Card Strasbourg -->
+          <aside class="memory right" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble t">
+                <strong>Tracy:</strong> BSER3A BADNA NLA77I2 L CHRISTMAS TREE SHOW BYA3MULWA BAS AWWAL NHAR CHRISTMAS MARKET.
+              </div>
+              <div class="pov">POV: Tol3o bya3mlo nafs show kel se3a 3ala 20 nhar.</div>
+            </div>
+          </aside>
 
           <!-- Dubai -->
-          <li class="t-item left" data-reveal data-reveal-delay="120">
+          <article class="t-item left" data-reveal data-reveal-delay="120">
             <div class="t-icon"><i class="fa-solid fa-city" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>May 1, 2025</time>
               <h3>Dubai</h3>
               <p>Skylines, beach walks, and “one more coffee” becoming a personality trait. Fast city, slower moments.</p>
-              <div class="postcards">
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/dubai-a.jpg" data-lightbox="t5"><img src="photos/dubai-a.jpg" alt="Dubai A"><span>Marina</span></a>
-                <a class="polaroid tilt-m" href="photos/dubai-b.jpg" data-lightbox="t5"><img src="photos/dubai-b.jpg" alt="Dubai B"><span>Downtown</span></a>
-                <a class="polaroid tilt-r" href="photos/dubai-c.jpg" data-lightbox="t5"><img src="photos/dubai-c.jpg" alt="Dubai C"><span>Sunset</span></a>
+                <a class="polaroid tilt-r" href="photos/dubai-b.jpg" data-lightbox="t5"><img src="photos/dubai-b.jpg" alt="Dubai B"><span>Downtown</span></a>
               </div>
             </div>
-          </li>
+          </article>
+
+          <!-- Memory Card Dubai -->
+          <aside class="memory left" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble j">
+                <strong>Justin:</strong> Elna nos se3a waslin,
+              </div>
+              <div class="bubble t">
+                <strong>Tracy:</strong> Adde ajar l she22a hon?
+              </div>
+            </div>
+          </aside>
 
           <!-- Abu Dhabi -->
-          <li class="t-item right" data-reveal data-reveal-delay="140">
+          <article class="t-item right" data-reveal data-reveal-delay="140">
             <div class="t-icon"><i class="fa-solid fa-mosque" aria-hidden="true"></i></div>
             <div class="t-card">
               <time>May 2, 2025</time>
               <h3>Abu Dhabi</h3>
-              <p>Calmer streets, beautiful sights. The day where every photo looked like a postcard (so we made three).</p>
-              <div class="postcards">
+              <p>Calmer streets, beautiful sights. The day where every photo looked like a postcard.</p>
+              <div class="postcards two">
                 <a class="polaroid tilt-l" href="photos/abudhabi-a.jpg" data-lightbox="t6"><img src="photos/abudhabi-a.jpg" alt="Abu Dhabi A"><span>Corniche</span></a>
-                <a class="polaroid tilt-m" href="photos/abudhabi-b.jpg" data-lightbox="t6"><img src="photos/abudhabi-b.jpg" alt="Abu Dhabi B"><span>Grand Mosque</span></a>
-                <a class="polaroid tilt-r" href="photos/abudhabi-c.jpg" data-lightbox="t6"><img src="photos/abudhabi-c.jpg" alt="Abu Dhabi C"><span>Blue Hour</span></a>
+                <a class="polaroid tilt-r" href="photos/abudhabi-b.jpg" data-lightbox="t6"><img src="photos/abudhabi-b.jpg" alt="Abu Dhabi B"><span>Grand Mosque</span></a>
               </div>
             </div>
-          </li>
+          </article>
 
-        </ol>
+          <!-- Memory Card Abu Dhabi -->
+          <aside class="memory right" data-reveal>
+            <div class="memory-inner">
+              <div class="bubble t">
+                <strong>Tracy:</strong> La2 la2 Dubai a7la hon kharej 3ayle.
+              </div>
+              <div class="pov">POV: Tracy w Justin mesh khatbin ba3ed wala abandon sheghel bi Dubai.</div>
+            </div>
+          </aside>
+
+        </div>
       </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- MAP -->
+    <section class="section" id="map">
+      <div class="wrap">
+        <h2 class="center">Where We’ve Been</h2>
+        <div class="map-wrap" data-reveal>
+          <!-- Simple world map SVG with pins -->
+          <svg class="world" viewBox="0 0 800 400" role="img" aria-label="World map">
+            <defs>
+              <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#E8F7FF"/>
+                <stop offset="100%" stop-color="#F4E8FF"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="800" height="400" fill="url(#sea)" rx="16"/>
+            <!-- Very simplified continents -->
+            <path d="M100,160 C180,120 260,130 320,160 C350,175 370,210 340,230 C300,260 200,250 140,220 C110,205 90,180 100,160 Z" fill="#DCE8F5"/>
+            <path d="M360,155 C420,130 520,135 600,165 C660,190 660,230 600,250 C540,270 420,260 370,230 C340,210 330,175 360,155 Z" fill="#DCE8F5"/>
+            <path d="M600,230 C640,220 710,230 740,255 C750,265 745,285 710,295 C670,305 620,290 600,270 Z" fill="#DCE8F5"/>
+
+            <!-- Pins (approx coords) -->
+            <g class="pin" data-name="Lebanon" transform="translate(480,190)">
+              <circle r="12" fill="rgba(255,122,122,.35)"></circle>
+              <circle r="5" fill="#FF7A7A"></circle>
+            </g>
+            <g class="pin" data-name="Paris" transform="translate(430,150)">
+              <circle r="12" fill="rgba(148,247,197,.35)"></circle>
+              <circle r="5" fill="#94F7C5"></circle>
+            </g>
+            <g class="pin" data-name="Strasbourg" transform="translate(450,150)">
+              <circle r="12" fill="rgba(178,141,255,.35)"></circle>
+              <circle r="5" fill="#B28DFF"></circle>
+            </g>
+            <g class="pin" data-name="Dubai" transform="translate(540,210)">
+              <circle r="12" fill="rgba(123,223,242,.35)"></circle>
+              <circle r="5" fill="#7BDFF2"></circle>
+            </g>
+            <g class="pin" data-name="Abu Dhabi" transform="translate(535,210)">
+              <circle r="12" fill="rgba(255,204,112,.35)"></circle>
+              <circle r="5" fill="#FFCC70"></circle>
+            </g>
+          </svg>
+          <div class="tooltip" id="mapTip" role="status" aria-live="polite"></div>
+        </div>
+        <p class="center muted">Tap a pin to see the place name.</p>
+      </div>
+    </section>
+
+    <!-- LOOKING AHEAD -->
+    <section class="section ahead" id="ahead">
+      <div class="wrap">
+        <h2 class="center">Looking Ahead</h2>
+        <p class="center lead">Our story doesn’t stop here — this is just the intermission before Chapter 2.</p>
+        <p class="center muted">Stay tuned… same couple, new adventures.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY (placeholder) -->
     <section class="section" id="gallery">
       <div class="wrap">
         <h2 class="center">Gallery</h2>
