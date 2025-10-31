@@ -1,140 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tray & Jay — Our Journey</title>
-    <meta name="description" content="A simple, elegant page to share our story." />
-    <meta property="og:title" content="Tray & Jay — Our Journey" />
-    <meta property="og:description" content="Moments, milestones, and memories." />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💛</text></svg>">
-  </head>
-  <body>
-    <header class="site-header">
-      <a href="#" class="logo">Tray<span>&</span>Jay</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tray and Jay's Journey</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400;700&display=swap">
+
+  <!-- Icons (for timeline icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💛</text></svg>">
+  <meta name="description" content="Tray and Jay — Celebrating our love and memories." />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="#hero" class="brand">Tray <span>&</span> Jay</a>
       <nav>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#intro">Intro</a>
         <a href="#timeline">Timeline</a>
-        <a href="#contact">Contact</a>
+        <a href="#surprise">Surprise</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero" id="home">
-        <div class="hero-inner">
-          <h1 data-reveal>Our Journey</h1>
-          <p data-reveal data-reveal-delay="100">
-            A little corner of the internet for our memories. ✨
-          </p>
-          <div class="cta" data-reveal data-reveal-delay="200">
-            <a class="btn" href="#gallery">See Photos</a>
-            <a class="btn btn-secondary" href="#timeline">See Timeline</a>
-          </div>
-        </div>
-        <div class="hero-bg"></div>
-      </section>
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Tray and Jay's Journey</h1>
+      <p>Celebrating Our Love and Memories</p>
+      <a class="btn" href="#timeline">See the Timeline</a>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
 
-      <!-- ABOUT -->
-      <section class="section" id="about">
-        <div class="container grid-2">
-          <div class="card" data-reveal>
-            <h2>About Us</h2>
+  <main class="container">
+    <section id="intro" class="section">
+      <h2>Our First Year Together</h2>
+      <p>
+        Tracy, it's been an incredible journey with you over the past year. We've shared countless
+        memories, laughed together, and supported each other through everything. Here's a look back
+        at some of our favorite moments.
+      </p>
+    </section>
+
+    <section id="timeline" class="section">
+      <h2>Our Timeline</h2>
+
+      <div class="timeline">
+        <!-- 1 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"><i class="fas fa-kiss-wink-heart" aria-hidden="true"></i></div>
+          <div class="timeline-card">
+            <h3>Our First Date</h3>
             <p>
-              This site is a lightweight, fast, and privacy‑friendly page to share
-              our moments. Replace text & photos directly in the repository—no backend needed.
+              Our first date was at Mandaloun Restaurant in Batroun for lunch. Afterward, we walked
+              through the old city of Batroun, laughing about how hot it was and how we were both a
+              bit shy and sweating. It was a day filled with fun and the start of something
+              beautiful.
             </p>
-            <ul class="ticks">
-              <li>Fully static (HTML/CSS/JS)</li>
-              <li>Free hosting on GitHub Pages</li>
-              <li>Custom domain + HTTPS</li>
-            </ul>
-          </div>
-          <div class="card photo-card" data-reveal data-reveal-delay="100" aria-label="Hero collage">
-            <div class="photo-stack">
-              <div class="polaroid tilt-l"><img src="assets/photos/photo-1.jpg" alt="Memory 1" /></div>
-              <div class="polaroid tilt-r"><img src="assets/photos/photo-2.jpg" alt="Memory 2" /></div>
-              <div class="polaroid"><img src="assets/photos/photo-3.jpg" alt="Memory 3" /></div>
+            <div class="photo-grid">
+              <a href="photos/first-date-1.png" data-lightbox="timeline1"><img src="photos/first-date-1.png" alt="First Date 1"></a>
+              <a href="photos/first-date-2.png" data-lightbox="timeline1"><img src="photos/first-date-2.png" alt="First Date 2"></a>
+              <a href="photos/first-date-3.png" data-lightbox="timeline1"><img src="photos/first-date-3.png" alt="First Date 3"></a>
+              <a href="photos/first-date-4.png" data-lightbox="timeline1"><img src="photos/first-date-4.png" alt="First Date 4"></a>
             </div>
-            <small class="hint">Tip: drop 3 images into <code>assets/photos/</code> and keep these names.</small>
           </div>
         </div>
-      </section>
 
-      <!-- GALLERY -->
-      <section class="section" id="gallery">
-        <div class="container">
-          <h2 class="center" data-reveal>Gallery</h2>
-          <p class="center fade" data-reveal data-reveal-delay="100">
-            Add or remove cards by editing <code>index.html</code> — or script it later.
-          </p>
-          <div class="gallery">
-            <!-- Duplicate/delete blocks as needed -->
-            <figure class="card" data-reveal>
-              <img src="assets/photos/photo-1.jpg" alt="Photo 1" />
-              <figcaption>First coffee date ☕</figcaption>
-            </figure>
-            <figure class="card" data-reveal data-reveal-delay="50">
-              <img src="assets/photos/photo-2.jpg" alt="Photo 2" />
-              <figcaption>Weekend getaway 🗺️</figcaption>
-            </figure>
-            <figure class="card" data-reveal data-reveal-delay="100">
-              <img src="assets/photos/photo-3.jpg" alt="Photo 3" />
-              <figcaption>Sunset walk 🌅</figcaption>
-            </figure>
+        <!-- 2 -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"><i class="fas fa-plane-departure" aria-hidden="true"></i></div>
+          <div class="timeline-card">
+            <h3>Our Trip to Paris</h3>
+            <p>
+              Our trip to Paris was our first time traveling together. We explored the charming streets,
+              visited iconic landmarks, and indulged in delicious cuisine. The Eiffel Tower, lit up at night,
+              was the perfect backdrop for our love. We had so much fun and created memories that will last
+              a lifetime.
+            </p>
+            <div class="photo-grid">
+              <a href="photos/paris-1.png" data-lightbox="timeline2"><img src="photos/paris-1.png" alt="Paris 1"></a>
+              <a href="photos/paris-2.png" data-lightbox="timeline2"><img src="photos/paris-2.png" alt="Paris 2"></a>
+              <a href="photos/paris-3.png" data-lightbox="timeline2"><img src="photos/paris-3.png" alt="Paris 3"></a>
+              <a href="photos/paris-4.png" data-lightbox="timeline2"><img src="photos/paris-4.png" alt="Paris 4"></a>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- TIMELINE -->
-      <section class="section" id="timeline">
-        <div class="container">
-          <h2 class="center" data-reveal>Timeline</h2>
-          <ol class="timeline">
-            <li class="timeline-item" data-reveal>
-              <time>2024‑07‑10</time>
-              <div>Launched the very first page 💛</div>
-            </li>
-            <li class="timeline-item" data-reveal data-reveal-delay="80">
-              <time>2024‑12‑25</time>
-              <div>Our trip to the mountains</div>
-            </li>
-            <li class="timeline-item" data-reveal data-reveal-delay="160">
-              <time>2025‑02‑14</time>
-              <div>Valentine’s dinner</div>
-            </li>
-          </ol>
+        <!-- 3 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"><i class="fas fa-magic" aria-hidden="true"></i></div>
+          <div class="timeline-card">
+            <h3>Our Trip to Disneyland</h3>
+            <p>
+              Disneyland was a magical experience. We enjoyed the thrilling rides, met our favorite characters,
+              and felt like kids again. It was a day full of laughter and joy, creating magical memories together.
+            </p>
+            <div class="photo-grid">
+              <a href="photos/disneyland-1.png" data-lightbox="timeline3"><img src="photos/disneyland-1.png" alt="Disneyland 1"></a>
+              <a href="photos/disneyland-2.png" data-lightbox="timeline3"><img src="photos/disneyland-2.png" alt="Disneyland 2"></a>
+              <a href="photos/disneyland-3.png" data-lightbox="timeline3"><img src="photos/disneyland-3.png" alt="Disneyland 3"></a>
+              <a href="photos/disneyland-4.png" data-lightbox="timeline3"><img src="photos/disneyland-4.png" alt="Disneyland 4"></a>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <!-- CONTACT/FOOTER -->
-      <section class="section soft" id="contact">
-        <div class="container center">
-          <h2 data-reveal>Say Hi</h2>
-          <p data-reveal data-reveal-delay="100">
-            You can add a contact form later (via a static form service), or just put an email/Instagram link here.
-          </p>
-          <p class="links" data-reveal data-reveal-delay="150">
-            <a href="mailto:hello@example.com" class="btn">Email us</a>
-            <a href="#home" class="btn btn-secondary">Back to top</a>
-          </p>
+        <!-- 4 -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"><i class="fas fa-archway" aria-hidden="true"></i></div>
+          <div class="timeline-card">
+            <h3>Our Trip to Strasbourg</h3>
+            <p>
+              Our trip to Strasbourg was like a fairy tale. The magical Christmas market, the stunning architecture,
+              and the cozy cafes made our trip unforgettable. We wandered hand in hand, marveling at the beauty of
+              the city, despite the cold weather. It was a truly magical experience.
+            </p>
+            <div class="photo-grid">
+              <a href="photos/strasbourg-1.png" data-lightbox="timeline4"><img src="photos/strasbourg-1.png" alt="Strasbourg 1"></a>
+              <a href="photos/strasbourg-2.png" data-lightbox="timeline4"><img src="photos/strasbourg-2.png" alt="Strasbourg 2"></a>
+              <a href="photos/strasbourg-3.png" data-lightbox="timeline4"><img src="photos/strasbourg-3.png" alt="Strasbourg 3"></a>
+              <a href="photos/strasbourg-4.png" data-lightbox="timeline4"><img src="photos/strasbourg-4.png" alt="Strasbourg 4"></a>
+            </div>
+          </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <span>© <span id="year"></span> Tray & Jay</span>
-        <span>Built with 💛 on GitHub Pages</span>
+        <!-- 5 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"><i class="fas fa-heart" aria-hidden="true"></i></div>
+          <div class="timeline-card">
+            <h3>Attending Our First Wedding Together</h3>
+            <p>
+              From festivals to quiet evenings at home, every day with you has been an adventure. Your love and
+              companionship make every moment special, and I look forward to creating many more memories together.
+            </p>
+            <div class="photo-grid">
+              <a href="photos/wedding-1.png" data-lightbox="timeline5"><img src="photos/wedding-1.png" alt="Wedding 1"></a>
+              <a href="photos/wedding-2.png" data-lightbox="timeline5"><img src="photos/wedding-2.png" alt="Wedding 2"></a>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <section id="surprise" class="section">
+      <h2>Tap Me for a Surprise</h2>
+      <button id="surpriseBtn" class="btn">Reveal</button>
+      <div id="surprise-content" class="hidden">
+        <h2 class="surprise-message">Happy 1 Year Anniversary My Love!</h2>
+        <div class="photo-grid">
+          <a href="photos/surprise-1.png" data-lightbox="surprise"><img src="photos/surprise-1.png" alt="Surprise 1"></a>
+          <a href="photos/surprise-2.png" data-lightbox="surprise"><img src="photos/surprise-2.png" alt="Surprise 2"></a>
+          <a href="photos/surprise-3.png" data-lightbox="surprise"><img src="photos/surprise-3.png" alt="Surprise 3"></a>
+          <a href="photos/surprise-4.png" data-lightbox="surprise"><img src="photos/surprise-4.png" alt="Surprise 4"></a>
+        </div>
+        <p class="love-message">I've Loved You<br>I Love You<br>and I will always Love You</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Tray and Jay's Journey &copy; <span id="year"></span></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
