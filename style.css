@@ -79,10 +79,7 @@ body{
   background: var(--card); border: 1px solid rgba(0,0,0,.06);
   border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
 }
-.card.highlight{ background: linear-gradient(180deg, rgba(148,247,197,.35), rgba(255,255,255,.85)); }
-
-.ticks{ margin: 10px 0 0; padding-left: 18px; }
-.ticks li{ margin: 6px 0; }
+.card.note{ background: linear-gradient(180deg, rgba(148,247,197,.35), rgba(255,255,255,.85)); }
 
 /* ---------- Timeline ---------- */
 .timeline{ position: relative; list-style: none; padding-left: 0; margin: 26px 0 0; }
@@ -104,7 +101,7 @@ body{
 .t-card h3{ margin: 4px 0 6px; font-size: 20px; }
 .t-card p{ margin: 0 0 14px; color: var(--ink); }
 
-/* Postcard photo pair */
+/* Postcard photo trio */
 .postcards{ display:flex; gap:14px; flex-wrap: wrap; }
 .polaroid{
   background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 12px;
@@ -115,6 +112,7 @@ body{
 .polaroid span{ position:absolute; left:10px; bottom:6px; font-size: 12px; color:#6b7280; font-weight:700; }
 .polaroid:hover{ transform: translateY(-3px) rotate(-1deg); }
 .tilt-l{ transform: rotate(-4deg); }
+.tilt-m{ transform: rotate(1deg); }
 .tilt-r{ transform: rotate(3deg); }
 
 /* Alternate layout on wide screens */
@@ -151,5 +149,10 @@ body{
 .revealed[data-reveal-delay="100"]{ transition-delay: 100ms; }
 .revealed[data-reveal-delay="120"]{ transition-delay: 120ms; }
 
-/* ---------- Utilities ---------- */
-code{ background: rgba(0,0,0,.04); padding: 2px 6px; border-radius: 6px; }
+/* ---------- Mobile Tweaks ---------- */
+@media (max-width: 520px){
+  .polaroid{ width: calc(50% - 8px); }
+  .polaroid img{ height: 110px; }
+  .tilt-l, .tilt-m, .tilt-r{ transform: rotate(0.5deg); } /* gentler tilt on phones */
+  .site-header .nav a{ margin-left: 10px; }
+}
