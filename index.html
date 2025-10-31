@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tray & Jay — Our Journey</title>
+    <meta name="description" content="A simple, elegant page to share our story." />
+    <meta property="og:title" content="Tray & Jay — Our Journey" />
+    <meta property="og:description" content="Moments, milestones, and memories." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💛</text></svg>">
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="#" class="logo">Tray<span>&</span>Jay</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="home">
+        <div class="hero-inner">
+          <h1 data-reveal>Our Journey</h1>
+          <p data-reveal data-reveal-delay="100">
+            A little corner of the internet for our memories. ✨
+          </p>
+          <div class="cta" data-reveal data-reveal-delay="200">
+            <a class="btn" href="#gallery">See Photos</a>
+            <a class="btn btn-secondary" href="#timeline">See Timeline</a>
+          </div>
+        </div>
+        <div class="hero-bg"></div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="container grid-2">
+          <div class="card" data-reveal>
+            <h2>About Us</h2>
+            <p>
+              This site is a lightweight, fast, and privacy‑friendly page to share
+              our moments. Replace text & photos directly in the repository—no backend needed.
+            </p>
+            <ul class="ticks">
+              <li>Fully static (HTML/CSS/JS)</li>
+              <li>Free hosting on GitHub Pages</li>
+              <li>Custom domain + HTTPS</li>
+            </ul>
+          </div>
+          <div class="card photo-card" data-reveal data-reveal-delay="100" aria-label="Hero collage">
+            <div class="photo-stack">
+              <div class="polaroid tilt-l"><img src="assets/photos/photo-1.jpg" alt="Memory 1" /></div>
+              <div class="polaroid tilt-r"><img src="assets/photos/photo-2.jpg" alt="Memory 2" /></div>
+              <div class="polaroid"><img src="assets/photos/photo-3.jpg" alt="Memory 3" /></div>
+            </div>
+            <small class="hint">Tip: drop 3 images into <code>assets/photos/</code> and keep these names.</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section" id="gallery">
+        <div class="container">
+          <h2 class="center" data-reveal>Gallery</h2>
+          <p class="center fade" data-reveal data-reveal-delay="100">
+            Add or remove cards by editing <code>index.html</code> — or script it later.
+          </p>
+          <div class="gallery">
+            <!-- Duplicate/delete blocks as needed -->
+            <figure class="card" data-reveal>
+              <img src="assets/photos/photo-1.jpg" alt="Photo 1" />
+              <figcaption>First coffee date ☕</figcaption>
+            </figure>
+            <figure class="card" data-reveal data-reveal-delay="50">
+              <img src="assets/photos/photo-2.jpg" alt="Photo 2" />
+              <figcaption>Weekend getaway 🗺️</figcaption>
+            </figure>
+            <figure class="card" data-reveal data-reveal-delay="100">
+              <img src="assets/photos/photo-3.jpg" alt="Photo 3" />
+              <figcaption>Sunset walk 🌅</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="section" id="timeline">
+        <div class="container">
+          <h2 class="center" data-reveal>Timeline</h2>
+          <ol class="timeline">
+            <li class="timeline-item" data-reveal>
+              <time>2024‑07‑10</time>
+              <div>Launched the very first page 💛</div>
+            </li>
+            <li class="timeline-item" data-reveal data-reveal-delay="80">
+              <time>2024‑12‑25</time>
+              <div>Our trip to the mountains</div>
+            </li>
+            <li class="timeline-item" data-reveal data-reveal-delay="160">
+              <time>2025‑02‑14</time>
+              <div>Valentine’s dinner</div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- CONTACT/FOOTER -->
+      <section class="section soft" id="contact">
+        <div class="container center">
+          <h2 data-reveal>Say Hi</h2>
+          <p data-reveal data-reveal-delay="100">
+            You can add a contact form later (via a static form service), or just put an email/Instagram link here.
+          </p>
+          <p class="links" data-reveal data-reveal-delay="150">
+            <a href="mailto:hello@example.com" class="btn">Email us</a>
+            <a href="#home" class="btn btn-secondary">Back to top</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Tray & Jay</span>
+        <span>Built with 💛 on GitHub Pages</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
