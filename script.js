@@ -1,4 +1,41 @@
-// Basic Three.js spinning globe + pins + labels (no textures)
+// Year
+document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+
+// Reveal on scroll
+const els = document.querySelectorAll('[data-reveal]');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } })
+},{rootMargin:'0px 0px -12% 0px', threshold:0.12});
+els.forEach(el=>io.observe(el));
+
+// Smooth anchors
+document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+
+// Lightbox
+if (window.lightbox) { lightbox.option({ fadeDuration:150, imageFadeDuration:150, resizeDuration:150, wrapAround:true }); }
+
+// Timeline fill
+(function(){
+  const tl = document.getElementById('timelineLine');
+  const fill = document.getElementById('timelineFill');
+  function update(){
+    if(!tl || !fill) return;
+    const rect = tl.getBoundingClientRect();
+    const vH = window.innerHeight || document.documentElement.clientHeight;
+    const start = rect.top;
+    const progress = Math.min(1, Math.max(0, (vH - start) / (rect.height + vH*0.4)));
+    fill.style.height = Math.max(0, progress * rect.height) + 'px';
+  }
+  update(); window.addEventListener('scroll', update, {passive:true}); window.addEventListener('resize', update);
+})();
+
+// --------- PURE Three.js Cartoon Globe with pins + labels ---------
 (function(){
   const mount = document.getElementById('globe3d');
   if(!mount || !window.THREE) return;
@@ -43,16 +80,12 @@
   function addGraticule(step = 15){
     const m = new THREE.LineBasicMaterial({ color: 0x7eaee6, opacity: 0.45, transparent: true });
     for(let lon=-180; lon<=180; lon+=step){
-      const points = [];
-      for(let lat=-89; lat<=89; lat+=2){ points.push(latLonToVec3(lat, lon, R+0.001)); }
-      const geo = new THREE.BufferGeometry().setFromPoints(points);
-      scene.add(new THREE.Line(geo, m));
+      const pts = []; for(let lat=-89; lat<=89; lat+=2){ pts.push(latLonToVec3(lat, lon, R+0.001)); }
+      const geo = new THREE.BufferGeometry().setFromPoints(pts); scene.add(new THREE.Line(geo, m));
     }
     for(let lat=-75; lat<=75; lat+=step){
-      const points = [];
-      for(let lon=-180; lon<=180; lon+=2){ points.push(latLonToVec3(lat, lon, R+0.001)); }
-      const geo = new THREE.BufferGeometry().setFromPoints(points);
-      scene.add(new THREE.Line(geo, m));
+      const pts = []; for(let lon=-180; lon<=180; lon+=2){ pts.push(latLonToVec3(lat, lon, R+0.001)); }
+      const geo = new THREE.BufferGeometry().setFromPoints(pts); scene.add(new THREE.Line(geo, m));
     }
   }
 
@@ -66,12 +99,10 @@
     ctx.fillStyle = 'rgba(255,255,255,0.95)';
     roundRect(ctx, 0, 0, canvas.width, canvas.height, 12); ctx.fill();
     ctx.fillStyle = color; ctx.textBaseline = 'middle';
-    ctx.font = `600 ${fontSize}px Poppins, system-ui`;
-    ctx.fillText(msg, padding, canvas.height/2);
+    ctx.font = `600 ${fontSize}px Poppins, system-ui`; ctx.fillText(msg, padding, canvas.height/2);
     const tex = new THREE.CanvasTexture(canvas); tex.anisotropy = 8;
     const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
-    const scale = 0.6; spr.scale.set(canvas.width/200*scale, canvas.height/200*scale, 1);
-    return spr;
+    const scale = 0.6; spr.scale.set(canvas.width/200*scale, canvas.height/200*scale, 1); return spr;
   }
   function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
 
