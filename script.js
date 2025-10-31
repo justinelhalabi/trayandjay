@@ -52,29 +52,3 @@ if (window.lightbox) {
   window.addEventListener('scroll', update, {passive:true});
   window.addEventListener('resize', update);
 })();
-
-// Simple map tooltips
-(function(){
-  const tip = document.getElementById('mapTip');
-  const mapWrap = document.querySelector('.map-wrap');
-  if(!tip || !mapWrap) return;
-  mapWrap.querySelectorAll('.pin').forEach(pin=>{
-    pin.addEventListener('mouseenter', ()=>{
-      tip.textContent = pin.getAttribute('data-name') || '';
-      tip.style.opacity = 1;
-    });
-    pin.addEventListener('mouseleave', ()=>{
-      tip.style.opacity = 0;
-    });
-    pin.addEventListener('mousemove', (e)=>{
-      const r = mapWrap.getBoundingClientRect();
-      tip.style.left = (e.clientX - r.left) + 'px';
-      tip.style.top  = (e.clientY - r.top) + 'px';
-    });
-    pin.addEventListener('click', ()=>{
-      tip.textContent = pin.getAttribute('data-name') || '';
-      tip.style.opacity = 1;
-      setTimeout(()=> tip.style.opacity = 0, 1200);
-    });
-  });
-})();
